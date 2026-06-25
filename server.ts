@@ -110,7 +110,7 @@ async function startServer() {
     }) => {
       try {
         const roomId = Math.random().toString(36).substring(2, 8).toUpperCase();
-        
+
         // Pick safe starting position on the left
         const initialPlayer: Player = {
           id: socket.id,
@@ -333,8 +333,8 @@ async function startServer() {
       if (!player) return;
 
       const now = Date.now();
-      // Server-side attack cooldown check (0.25s)
-      if (now - player.lastThrowTime < 250) {
+      // Server-side attack cooldown check (0.3s)
+      if (now - player.lastThrowTime < 300) {
         return;
       }
       player.lastThrowTime = now;
@@ -650,7 +650,7 @@ async function startServer() {
             // Reflect the cleaver back towards the thrower
             cleaver.ownerId = player.id;
             cleaver.reflectedCount += 1;
-            
+
             // Reverse direction and boost speed
             const reflectMultiplier = 1.4;
             cleaver.vx = -cleaver.vx * reflectMultiplier;
@@ -715,7 +715,7 @@ async function startServer() {
   function handleRoundVictory(room: GameRoom, defeatedPlayerId: string) {
     const playerIds = Object.keys(room.players);
     const winnerId = playerIds.find(id => id !== defeatedPlayerId);
-    
+
     if (!winnerId) return;
 
     const winner = room.players[winnerId];

@@ -160,7 +160,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
     setTimeout(() => {
       canThrowRef.current = true;
       setCanThrow(true);
-    }, 250);
+    }, 300);
   };
 
   // Keyboard Event Handlers
@@ -508,7 +508,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
 
       // Draw Player Figure
       ctx.save();
-      
+
       // Shadow under character
       ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
       ctx.beginPath();
@@ -567,7 +567,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 11px 'Space Grotesk', sans-serif";
       ctx.textAlign = "center";
-      
+
       const label = isMe ? `${player.name} (나)` : player.name;
       ctx.fillText(label, x + halfW, y - 26);
 
@@ -628,9 +628,9 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
           ctx.lineWidth = 1;
           ctx.strokeRect(barX, barY, barWidth, barHeight);
         } else if (!canThrow) {
-          // Progressive reload progress bar! (250ms)
+          // Progressive reload progress bar! (300ms)
           const elapsed = Date.now() - lastThrowTimeRef.current;
-          const pct = Math.min(1.0, elapsed / 250);
+          const pct = Math.min(1.0, elapsed / 300);
 
           // Background
           ctx.fillStyle = "#1E293B";
@@ -680,7 +680,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(String(roomState.countdown), CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
-      
+
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 18px 'Noto Sans KR', sans-serif";
       ctx.shadowBlur = 0;
@@ -915,11 +915,10 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
                 setChargeValue(0);
               }
             }}
-            className={`w-16 h-16 rounded-full flex flex-col items-center justify-center text-white active:bg-rose-500/80 font-black shadow-xl select-none transition-colors duration-150 ${
-              canThrow 
-                ? "bg-rose-500/25 border border-rose-500/40" 
+            className={`w-16 h-16 rounded-full flex flex-col items-center justify-center text-white active:bg-rose-500/80 font-black shadow-xl select-none transition-colors duration-150 ${canThrow
+                ? "bg-rose-500/25 border border-rose-500/40"
                 : "bg-slate-700/40 border border-slate-600/30 opacity-40 cursor-not-allowed"
-            }`}
+              }`}
             style={{ touchAction: "none" }}
           >
             <span className="text-base font-black">L</span>
