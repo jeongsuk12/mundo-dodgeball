@@ -1,0 +1,8 @@
+{
+  "name": "Mundo Dodgeball",
+  "description": "실시간 1대1 문도 피구 웹 게임. 웹 오디오와 소켓을 지원하는 고성능 멀티플레이어 매치.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
